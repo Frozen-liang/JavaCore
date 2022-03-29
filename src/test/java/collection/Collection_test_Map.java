@@ -3,10 +3,13 @@ package collection;
 import org.junit.Test;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 @SuppressWarnings("all")
 // Map map = new Map(); 接口实现的是子类
@@ -132,5 +135,17 @@ public class Collection_test_Map {
             if (en.sal >= 1800)
                 System.out.println(entry);
         }
+    }
+
+    @Test
+    public void Collection_TreeMap(){
+
+        TreeMap treeMap = new TreeMap();
+        treeMap.put(1,"ljd");
+        treeMap.put(2,"xy");
+        treeMap.put(3,"lss");
+        treeMap.put(4,"lss");
+
+        System.out.println(treeMap);
     }
 }

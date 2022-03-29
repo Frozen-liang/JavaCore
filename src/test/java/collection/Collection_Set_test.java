@@ -3,11 +3,13 @@ package collection;
 import org.junit.Test;
 import org.w3c.dom.Node;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.TreeSet;
 
 @SuppressWarnings("all")
 public class Collection_Set_test {
@@ -213,5 +215,24 @@ public class Collection_Set_test {
 
         // 添加顺序和取出数据顺序也是一致的
         System.out.println(linkedHashSet);
+    }
+
+    @Test
+    public void Collection_() {
+
+        //        TreeSet treeSet = new TreeSet();
+
+        TreeSet treeSet = new TreeSet(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                return o1.toString().compareTo(o2.toString());
+            }
+        });
+
+        treeSet.add("ljd");
+        treeSet.add("xy");
+        treeSet.add("lss");
+
+        System.out.println(treeSet);
     }
 }
