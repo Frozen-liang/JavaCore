@@ -5,6 +5,9 @@ import org.w3c.dom.Node;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map.Entry;
+import java.util.Objects;
 
 @SuppressWarnings("all")
 public class Collection_Set_test {
@@ -96,7 +99,7 @@ public class Collection_Set_test {
 
     }
 
-    class HashSet树化{
+    class HashSet树化 {
         private int i;
 
         public HashSet树化(int i) {
@@ -123,5 +126,92 @@ public class Collection_Set_test {
             hashSet2.add(new HashSet树化(i));
         }
         System.out.println(hashSet2);
+    }
+
+    /*
+     * 一个员工类中 相同名字和年龄不能加入到集合中
+     * */
+
+    class Collection_Em {
+        private String name;
+        private int age;
+
+        public Collection_Em(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return "Collection_Em{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
+
+        // 如果name 和 age 相同返回相同的哈希码
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, age);     // 先比较哈希码
+        }
+
+        @Override
+        public boolean equals(Object o) {       // 再比较值
+            if (this == o)
+                return true;
+            if (!(o instanceof Collection_Em))
+                return false;
+            Collection_Em that = (Collection_Em) o;
+            return age == that.age && Objects.equals(name, that.name);
+        }
+    }
+
+    @Test
+    public void Collection_test_HashSet列题1() {
+        HashSet hashSet = new HashSet();
+        hashSet.add(new Collection_Em("ljd", 10));
+        hashSet.add(new Collection_Em("xy", 10));
+        hashSet.add(new Collection_Em("ljd", 10));
+
+        System.out.println(hashSet);
+    }
+
+    class LinkedHashSet_Car {
+        private String name;
+        private int price;
+
+        public LinkedHashSet_Car(String name, int price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof LinkedHashSet_Car)) return false;
+            LinkedHashSet_Car that = (LinkedHashSet_Car) o;
+            return price == that.price && Objects.equals(name, that.name);
+        }
+
+        // 如果 哈希相同 但是父类的equals同样比较地址
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, price);
+        }
+    }
+
+    @Test
+    public void Collection_test_LinkedHashSet() {
+        // 数组就是table 双向链表代表有序了 哈希值不同 值同 添加到屁股后面
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        linkedHashSet.add(1);
+        linkedHashSet.add(2);
+        linkedHashSet.add(3);
+        linkedHashSet.add(4);
+        linkedHashSet.add(5);
+        linkedHashSet.add(1);
+
+        // 添加顺序和取出数据顺序也是一致的
+        System.out.println(linkedHashSet);
     }
 }

@@ -13,26 +13,11 @@ import java.util.Vector;
 /**
  * @date 2022/3/27 - 20:40
  */
-class Collection_Book {
-    private String name;
-    private String author;
 
-    public Collection_Book(String name, String author) {
-        this.name = name;
-        this.author = author;
-    }
-
-    @Override
-    public String toString() {
-        return "Collection_Book{" +
-                "name='" + name + '\'' +
-                ", author='" + author + '\'' +
-                '}';
-    }
-}
 
 @SuppressWarnings("all")
 public class Collection_List_test {
+
     @Test
     public void test_简单介绍() {
         // 单列集合
@@ -46,9 +31,26 @@ public class Collection_List_test {
         hashMap.put("1", "liang");
     }
 
+    class Collection_Book {
+        private String name;
+        private String author;
+
+        public Collection_Book(String name, String author) {
+            this.name = name;
+            this.author = author;
+        }
+
+        @Override
+        public String toString() {
+            return "Collection_Book{" +
+                    "name='" + name + '\'' +
+                    ", author='" + author + '\'' +
+                    '}';
+        }
+    }
+
     @Test
     public void test_Collection方法() {
-
 // Iterator 迭代器对象 对集合元素的遍历 并不存放数据 itit
         Collection col = new ArrayList();
         col.add(new Collection_Book("hlm", "ljd"));
