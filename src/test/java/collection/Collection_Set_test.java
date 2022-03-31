@@ -235,4 +235,10 @@ public class Collection_Set_test {
 
         System.out.println(treeSet);
     }
+
+    @Test
+    public void Collection_TreeSet(){
+        TreeSet treeSet = new TreeSet();
+        treeSet.add(1);
+    }
 }

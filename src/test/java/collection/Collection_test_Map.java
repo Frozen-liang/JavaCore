@@ -3,13 +3,13 @@ package collection;
 import org.junit.Test;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 @SuppressWarnings("all")
 // Map map = new Map(); 接口实现的是子类
@@ -138,14 +138,35 @@ public class Collection_test_Map {
     }
 
     @Test
-    public void Collection_TreeMap(){
+    public void Collection_HashTable() {
+        // 线程安全 效率底
+        Hashtable hashtable = new Hashtable();
+        hashtable.put(1,"ljd");
+        hashtable.put(2,"xy");
+        hashtable.put(3,"lss");
+//        hashtable.put(4,null);            value不能为空
+        hashtable.put(1,"lss");         //  替换
+//        hashtable.put(null,"lss");        key不能为空
 
+        System.out.println(hashtable);
+    }
+
+    @Test
+    public void Collection_Properties() {
+        Properties properties = new Properties();
+        properties.put(1,"ljd");
+        properties.put(2,"xy");
+        properties.put(3,"lss");
+//        properties.put(4,null);            value不能为空
+        properties.put(1,"lss");         //  替换
+//        properties.put(null,"lss");        key不能为空
+
+        System.out.println(properties);
+    }
+
+    @Test
+    public void Collection_TreeMap(){
         TreeMap treeMap = new TreeMap();
         treeMap.put(1,"ljd");
-        treeMap.put(2,"xy");
-        treeMap.put(3,"lss");
-        treeMap.put(4,"lss");
-
-        System.out.println(treeMap);
     }
 }
