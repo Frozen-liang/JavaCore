@@ -55,7 +55,7 @@ public class Enumeration {
     public void Enum_1() {
         // 对于季节都是固定的 不会变化的
 //        Enum_season1 enum_season = new Enum_season1("111","温暖");
-
+//
 //        System.out.println(enum_season);
     }
 

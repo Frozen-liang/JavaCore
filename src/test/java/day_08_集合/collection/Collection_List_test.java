@@ -1,4 +1,4 @@
-package collection;
+package day_08_集合.collection;
 
 import org.junit.Test;
 

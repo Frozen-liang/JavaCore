@@ -1,13 +1,10 @@
-package collection;
+package day_08_集合.collection;
 
 import org.junit.Test;
-import org.w3c.dom.Node;
 
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeSet;
 
@@ -151,21 +148,6 @@ public class Collection_Set_test {
                     '}';
         }
 
-        // 如果name 和 age 相同返回相同的哈希码
-        @Override
-        public int hashCode() {
-            return Objects.hash(name, age);     // 先比较哈希码
-        }
-
-        @Override
-        public boolean equals(Object o) {       // 再比较值
-            if (this == o)
-                return true;
-            if (!(o instanceof Collection_Em))
-                return false;
-            Collection_Em that = (Collection_Em) o;
-            return age == that.age && Objects.equals(name, that.name);
-        }
     }
 
     @Test
@@ -195,7 +177,7 @@ public class Collection_Set_test {
             return price == that.price && Objects.equals(name, that.name);
         }
 
-        // 如果 哈希相同 但是父类的equals同样比较地址
+        // 如果 哈希相同 但是父类的equals同样比较地址 所以也要重写equals的方法
         @Override
         public int hashCode() {
             return Objects.hash(name, price);
@@ -237,8 +219,10 @@ public class Collection_Set_test {
     }
 
     @Test
-    public void Collection_TreeSet(){
+    public void Collection_TreeSet() {
         TreeSet treeSet = new TreeSet();
         treeSet.add(1);
+
+
     }
 }

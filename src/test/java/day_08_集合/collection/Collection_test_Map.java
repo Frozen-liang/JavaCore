@@ -1,8 +1,7 @@
-package collection;
+package day_08_集合.collection;
 
 import org.junit.Test;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -23,8 +22,9 @@ public class Collection_test_Map {
         hashMap.put("ljdd", 1);      // vaule可以重复 因为key会重新找一个table索引
         hashMap.put("lj", 2);
         hashMap.put("ljd", 3);
-        hashMap.put("ljd", 1);       // 替换机制 替换key为”ljd“ 中的vaule
+        hashMap.put("ljd", 1);       // 替换机制 替换key为”ljd“ 中的vaule 替换为最后输入的值
         hashMap.put(null, null);
+        hashMap.put(null,"n");
 
         System.out.println(hashMap.get("ljd"));
         System.out.println(hashMap.size());
@@ -64,11 +64,17 @@ public class Collection_test_Map {
         hashMap.put("ljd", 3);
         hashMap.put("ljd", 1);
         hashMap.put(null, null);
+        System.out.println(hashMap.containsKey("l"));
+        System.out.println(hashMap.isEmpty());
+        System.out.println(hashMap.size());
+        System.out.println(hashMap.get("l"));
+        System.out.println(hashMap.replace("l", 111111));
 
         // 遍历取出Key
         Set key = hashMap.keySet();
 
         // 增强For
+        System.out.println("增强For输出-------------------------------");
         for (Object o : key) {
             System.out.println(key + " " + hashMap.get(key));
         }
@@ -79,6 +85,7 @@ public class Collection_test_Map {
             Object next = iterator.next();
             System.out.println(next + " " + hashMap.get(next));
         }
+        System.out.println("----------------------");
 
         // Collection values = hashMap.values();
 
@@ -87,6 +94,8 @@ public class Collection_test_Map {
         for (Object entry : set1) {
             Map.Entry entry1 = (Map.Entry) entry;
         }
+
+        System.out.println("-----------------------------");
 
         Set set2 = hashMap.entrySet();
         Iterator iterator1 = set2.iterator();
@@ -158,7 +167,7 @@ public class Collection_test_Map {
         properties.put(2,"xy");
         properties.put(3,"lss");
 //        properties.put(4,null);            value不能为空
-        properties.put(1,"lss");         //  替换
+        properties.put(1,"lss");         //  替换机制
 //        properties.put(null,"lss");        key不能为空
 
         System.out.println(properties);
@@ -168,5 +177,10 @@ public class Collection_test_Map {
     public void Collection_TreeMap(){
         TreeMap treeMap = new TreeMap();
         treeMap.put(1,"ljd");
+//        treeMap.put(null,null);
+//        treeMap.put(null,"null");
+//        treeMap.put("null",null);   都不能为空
+
+
     }
 }
