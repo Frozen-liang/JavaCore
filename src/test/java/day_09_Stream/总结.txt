@@ -1,0 +1,103 @@
+1. Stream流   【掌握】
+    同IO流完全不是一码事。
+        IO流是用于数据传输以及文件操作。
+        Stream流是用于操作容器中的元素。
+
+    特点：
+        1. 每条流都只能操作一次。
+        2. 流只负责处理数据，不负责存储数据。
+        3. 处理之后的数据，不能反悔。
+        4. 流中的数据改变，原集合数据不变。
+
+    四大接口：
+        Consumer<T> :  消费类型接口
+            void accept(T t)
+        Supplier<T> :  生产类型接口
+            T get()
+        Prodicate<T> : 判断类型接口
+            boolean test(T t)
+        Function<R,T>: 转换类型接口
+            T apply(R r);
+
+    容器：
+        1. 数组
+        2. 单列集合
+        3. 双列集合
+
+    获取流；
+        数组:
+           Stream<T> Arrays.stream(T[] arr);
+           IntStream Arrays.stream(int[] arr);
+           LongStream Arrays.stream(Long[] arr);
+
+        单列集合:
+            Stream<T> list.stream();
+            Stream<T> set.stream()
+
+        双列集合:
+            Stream<K> map.keySet().stream();
+            Stream<Map.Entry<K,V>> map.entrySet().stream();
+
+    操作流：
+        中间：
+            Stream filter(Prodicate p);   过滤，满足条件留下。
+            Stream map(Function<R,T> f);  转换，将流中的数据，转成另一个类型
+            Stream limit(long a)          截取指定数量的元素
+            Stream skip(long a)           跳过指定数量的元素
+            static Stream concat(Stream s1,Stream s2)  将两个流数据合并成一个流
+            Stream distinct()             去重，hashCode() && equals()
+
+        终结：
+            void foreach(Consumer c);    遍历
+            long count()  流中元素个数
+            R collect(Collector<? super T,A,R> collector)  将流中数据进行收集，set.list.map.String
+                Collectors.toList()
+                Collectors.toSet()
+                Collectors.joinning();   必须流中的数据是String
+                Collectors.toMap(new Function<>(){},new Function(){})
+
+
+2. File
+    用于操作文件或文件夹的类。
+    该类就是封装了一个String类型的路径。
+    注意：
+        他不能操作文件中的内容。
+
+    构造方法：
+
+        File(String pathname) ：  传入一个字符串路径，封装成一个File对象
+        File(File parent, String child)：  传入一个子父级路径，封装成一个File对象
+        File(String parent, String child)  传入一个子父级路径，封装成一个File对象
+
+        完整路径：
+            D:\itcast\1_课件\1_新版课程资料\02-JavaSE进阶16天-V1.0讲义\day05-API&异常\day05-常用API01.ppt
+
+            父级路径： D:\itcast\1_课件\1_新版课程资料\
+            子级路径：02-JavaSE进阶16天-V1.0讲义\day05-API&异常\day05-常用API01.ppt
+
+            父级路径 + 子级路径 = 完整路径
+
+    绝对路径： 【带盘符】  一定能找到那个对应的文件或文件夹。
+        D:\itcast\1_课件\1_新版课程资料\02-JavaSE进阶16天-V1.0讲义\day05-API&异常\day05-常用API01.ppt
+    相对路径： 【不带盘符】  找不到！
+        \day05-常用API01.ppt
+
+        我们的代码中写相对路径，相对于你的项目而言。
+
+    创建：
+        boolean mkDirs() 创建多级路径(文件夹)
+        boolean createNewFile()  创建文件
+
+    删除：
+        boolean delete()  删除文件或文件夹
+            注意：
+                1. 别搞C盘
+                2. 删除文件夹，必须保证文件夹为空。
+                3. java删除后的文件，不会进入回收站，所以没有后悔的余地。
+
+    判断、获取：
+        boolean isHidden();  判断是否是隐藏文件
+        String getName(); 获取文件或文件夹名称
+        String getAbsolutePath()   获取绝对路径
+        boolean exist()  判断路径是否存在
+

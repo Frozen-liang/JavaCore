@@ -1,4 +1,4 @@
-package day_08_集合.heima.例题;
+package day_08_集合.heima.课堂;
 
 import org.junit.Test;
 
