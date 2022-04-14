@@ -71,13 +71,13 @@ public class 字符流 {
         FileWriter fileWriter = new FileWriter("/Users/apple/练习文件/IO/字符文件/出师表_副本.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-        treeMap.forEach((k,v)->{
+        treeMap.forEach((k, v) -> {
             //拿到 key 和 value 并且写入
             try {
-                bufferedWriter.write(k+"."+v);
+                bufferedWriter.write(k + "." + v);
                 // 遇见换行符自动识别系统换行
                 bufferedWriter.newLine();
-//                bufferedWriter.close(); 不能使用关闭 要一直写完 最后关闭
+//                bufferedWriter.close(); 不能使用关闭 要一直循环写完 最后关闭
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -86,9 +86,26 @@ public class 字符流 {
         bufferedWriter.close();
     }
 
-    // 字符转换流
+    // 字符转换流 写
     @Test
-    public void test3() throws IOException{
+    public void test4() throws IOException {
+        // 创建字节输出对象
+        FileOutputStream fileOutputStream =
+                new FileOutputStream("/Users/apple/练习文件/IO/字符文件/字符转换流.txt",true);
+
+        // 创建字节转换字符对象
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
+
+        // 操作 输出到文本
+        outputStreamWriter.write("我爱你");
+
+        // 关闭流 自动关闭字节流
+        outputStreamWriter.close();
+    }
+
+    // 字符转换流 读
+    @Test
+    public void test3() throws IOException {
         FileInputStream fileInputStream = new FileInputStream("/Users/apple/练习文件/IO/字符文件/字符转换流.txt");
 
 //        FileWriter fileWriter = new FileWriter("/Users/apple/练习文件/IO/字符文件/字符转换流.txt");
@@ -103,12 +120,12 @@ public class 字符流 {
 
         // 创建转换流对象
         // 将字节流转化为字符流
-        InputStreamReader isr = new InputStreamReader(fileInputStream,"UTF-8");
+        InputStreamReader isr = new InputStreamReader(fileInputStream, "UTF-8");
         // 创建高效流
         BufferedReader bufferedReader = new BufferedReader(isr);
         System.out.println(bufferedReader.readLine());
 
+        // 只关闭转换流 自动关闭字节流
         isr.close();
-        fileInputStream.close();
     }
 }

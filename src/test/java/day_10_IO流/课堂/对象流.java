@@ -70,10 +70,13 @@ public class 对象流 {
         ObjectOutputStream objectOutputStream =
                 new ObjectOutputStream(new FileOutputStream("/Users/apple/练习文件/IO/字符文件/对象流_student.txt"));
 
+        // 写入集合对象
+        objectOutputStream.writeObject(studentArrayList);
+
         // 循环写入对象
-        for (对象流_student student : studentArrayList) {
-            objectOutputStream.writeObject(student);
-        }
+//        for (对象流_student student : studentArrayList) {
+//            objectOutputStream.writeObject(student);
+//        }
 
         // 关闭流
         objectOutputStream.close();
@@ -92,7 +95,7 @@ public class 对象流 {
             try (ObjectInputStream objectInputStream =
                          new ObjectInputStream(new FileInputStream("/Users/apple/练习文件/IO/字符文件/对象流_student.txt"));
             ) {
-                // 问题如何读取下一个对象
+                // 问题如何读取下一个对象 陷入死循环
                 objectInputStream.readObject();
 
                 // 输出

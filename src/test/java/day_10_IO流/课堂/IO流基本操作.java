@@ -82,7 +82,7 @@ public class IO流基本操作 {
         fileOutputStream.close();
     }
 
-    // 用缓冲流数组作为缓存 内存中一个字节传输
+    // 自创建缓冲数组作为缓存 内存中一个字节传输
     @Test
     public void test4() throws IOException {
         // 创建缓冲数组读写对象
