@@ -120,4 +120,24 @@ public class IO流基本操作 {
         bufferedInputStream.close();
         bufferedOutputStream.close();
     }
+
+    @Test
+    public void test6() throws IOException {
+        // 创建对象
+        FileOutputStream fileOutputStream = new FileOutputStream("/Users/apple/练习文件/IO/字节流文件/a.txt");
+        FileInputStream fileInputStream = new FileInputStream("/Users/apple/练习文件/IO/字节流文件/a.txt");
+
+        // 操作
+        fileOutputStream.write(123);
+
+        // 读取
+        int len;
+        while ((len = fileInputStream.read()) != -1){
+            System.out.println(len);
+        }
+
+        //
+        fileInputStream.close();
+        fileOutputStream.close();
+    }
 }

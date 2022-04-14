@@ -1,0 +1,82 @@
+1. 字符流
+    底层 = 字节流 + 默认编码表(utf-8)
+    主要用于读写文本类型文件。
+    一次读一个字符数据。
+
+    字符输入流：
+        Reader:
+            FileReader:
+                int read()   一次读一个字符
+                int read(char[] arr)   一次读一个字符数组
+                close()  释放资源
+            BufferedReader:
+                String readLine()  一次读一行字符串，注意，不读换行符，必须手动写出换行符
+
+    字符输出流：
+        Writer:
+            FileWriter:   也会主动清空文件。
+                如果想要追加数据，在构造方法第二个参数，给true;
+                write(String s) 一次写出一个字符串数据
+                write(int r)   一次写一个字符
+                write(char[] arr,int off,int len)   一次写一个字节数组的一部分
+                flush()  刷新缓冲区
+                close()
+
+            BufferedWriter:
+                void newLine()   自动识别系统，写出对应的换行符
+
+            windows:  \r\n
+            Linux:  \n
+            mac:    \r
+
+            System.getProperties();
+
+        flush() 和 close()的区别？
+               flush()：会主动清空缓冲区，刷新之后，还可以继续写出
+               close()：在释放资源之前，会主动清空缓冲区，关流之后，无法继续写出数据
+
+    转换流：   【了解】
+        作用：
+            1. 可以将字节流和字符流之间相互转换。
+            2. 可以指定编码表对文件进行读写操作。
+        InputStreamReader： 将字节流，转成字符流。
+            InputStreamReader isr = new InputStreamReader(new FileInputStream("路径"),"gbk");
+
+        OutputStreadWriter: 将字符流，转成字节流
+            OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream("路径"),"utf-8");
+
+2. 对象操作流(序列化流)
+    把对象以字节的形式写入文件(持久化)。
+
+    概念：   【重要】
+        序列化：将对象转成字节。
+        反序列化：将字节数据，重构成一个对象。
+
+    ObjectInputStream     反序列化流
+        Object readObject();
+
+    ObjectOutputStream    序列化流
+        void writeObject(Object obj);
+
+    注意：
+        1. 被序列化的对象，一定要实现Serializable接口。  【重要】
+        2. 对象被序列化后，不要改动类的代码，否则反序列化会报错。  【重要】
+            serialVersionUID: 根据对象的所有成员，自动生成的一个版本号。
+        4. transient 瞬态。  瞬间的状态。
+            被该关键字修饰的变量，不会被序列化。
+
+3. Properties
+    双列集合。
+    这哥们可以完美和IO流结合进行文件的读写。
+    作用：
+        【读】写配置文件。
+
+    配置文件：
+        通常是手写。
+
+    创建：
+        Properties prop = new Properties();
+
+    如何读：
+        load(InputStream/Reader a);  读去指定文件中的键值对数据
+        String getPropery(String key);  通过键，获取值。
