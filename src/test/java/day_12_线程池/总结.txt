@@ -1,0 +1,50 @@
+1. 多线程   【面试】
+    线程状态：
+        NEW:新建
+            创建线程对象
+        RUNNABLE：就绪(运行)
+            调用start()
+        BLOCKED：阻塞
+            没有获得锁对象
+        TIMED_WAIT：计时等待
+            调用sleep(long time)
+        WAITING：无限等待
+            调用wait()
+        TERMINATED：死亡
+            run()执行完毕，或者调用stop()
+
+    池类技术：
+        提供复用性。
+        提供程序运行效率。
+
+    线程池：
+        一条线程大概在内存中，占用1MB资源。
+        作用：
+            1. 对线程数量可控。
+            2. 提供用户响应速度。
+            3. 降低系统资源消耗。
+                不是销毁线程，而是归还线程。
+
+        四大线程池：
+            newCachedThreadPool()    无边界线程池
+            newFixedThreadPool(int nThreads)    有边界线程池
+            newScheduledThreadPool(int corePoolSize)    延迟执行线程池
+            newSingleThreadExecutor()       单例线程池
+                作用：用来执行一些有序的线程任务。
+
+        自定义线程池：
+            ThreadPoolExecutor(
+                int corePoolSize,    --- 核心线程数(正式员工)
+                int maximumPoolSize, --- 最大线程数(正式员工 + 临时工)
+                long keepAliveTime,  --- 空闲线程存活时间(临时工没活干，多长时间开除)
+                TimeUnit unit,       --- 上面的时间单位
+                BlockingQueue<Runnable> workQueue,    --- 阻塞队列(等待区)
+                ThreadFactory threadFactory,          --- 创建线程方式
+                RejectedExecutionHandler handler      --- 拒接策略(无法接待时，如何拒接别人)
+            )
+
+        拒绝策略：
+            ThreadPoolExecutor.AbortPolicy  ：默认，拒绝并抛出异常
+            ThreadPoolExecutor.CallerRunsPolicy ： 绕过线程池，由提交线程任务的线程负责执行。
+            ThreadPoolExecutor.DiscardOldestPolicy ：抛弃阻塞队列中，等待时间最长的那个线程任务，将新任务放入队列。
+            ThreadPoolExecutor.DiscardPolicy  ： 拒绝不抛异常

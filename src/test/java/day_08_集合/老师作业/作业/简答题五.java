@@ -1,4 +1,4 @@
-package day_08_集合.heima.老师作业.作业;
+package day_08_集合.老师作业.作业;
 
 import org.junit.Test;
 
