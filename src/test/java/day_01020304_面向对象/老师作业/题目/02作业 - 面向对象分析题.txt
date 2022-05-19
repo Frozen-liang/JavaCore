@@ -1,0 +1,137 @@
+请看代码，是否有问题。如果有，说明哪里有问题？
+ 
+1.
+abstract class Name {
+   private String name;
+   public abstract boolean isStupidName(String name) {}
+}
+ 
+
+2.
+public class Something {
+   void doSomething () {
+       private String s = "";
+       int l = s.length();
+   }
+} 
+
+3.
+abstract class Something {
+   private abstract String doSomething ();
+}
+private私有，外界不可见。
+abstract抽象，要求子类必须重写。
+static: 被静态修饰的方法，可以通过类名直接调用。
+	但是抽象方法，没有方法体，调用毫无意义。
+final: 子类不能重写。抽象，要求子类必须重写。
+
+
+4.
+public class Something {
+   public static void main(String[] args){
+	addOne(10);
+   }
+  
+   public int addOne(final int x) {  // x = 10;
+       return ++x;   x = x+1;
+   }
+}
+ 
+
+5.
+public class Something {
+   public static void main(String[] args) {
+       Other o = new Other();
+       new Something().addOne(o);
+   }
+   public void addOne(final Other o) {
+       o.i++;   // o 不能改变地址。
+        
+   }
+}
+class Other {
+   public int i;
+} 
+
+
+6.
+class Something {
+    int i;  // 有默认值
+    public void doSomething() {
+        System.out.println("i = " + i);  // i = 0
+    }
+
+    public static void main(String[] args)
+    {
+	new Something().doSomething();
+    }
+} 
+ 
+
+7.
+class Something {
+    final int i;  // 被final修饰的成员变量，必须手动赋值。
+    public void doSomething() {
+        System.out.println("i = " + i);
+    }
+
+    public static void main(String[] args)
+    {
+	new Something().doSomething();
+    }
+}
+ 
+8.
+public class Something {
+    public static void main(String[] args) {
+        Something s = new Something();
+        System.out.println("s.doSomething() returns " + doSomething());
+    }
+    
+    public String doSomething() {
+        return "Do something ...";
+    }
+}
+ 
+9．
+interface  A{
+   public static final int x = 0;
+}
+class B{
+   int x =1;
+}
+class C extends B implements A {
+   public void pX(){
+      System.out.println(A.x);  
+      System.out.println(super.x);   
+   }
+   public static void main(String[] args) {
+      new C().pX();
+   }
+}
+ 
+
+10.
+interface Playable {
+    void play();
+}
+interface Bounceable {
+    void play();
+}
+interface Rollable extends Playable, Bounceable {
+  Ball ball = new Ball("PingPang");
+}
+class Ball implements Rollable {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public Ball(String name) {
+        this.name = name;        
+    }
+    public void play() {
+	//x = 20;
+	ball = new Ball("Football");
+        System.out.println(ball.getName());
+    }
+} 
