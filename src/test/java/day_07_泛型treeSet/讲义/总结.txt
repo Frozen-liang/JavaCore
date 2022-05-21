@@ -1,0 +1,58 @@
+1. 泛型：
+    就是一种未知的数据类型。
+    当我们使用的时候，指定具体的类型。
+
+    好处：
+        1. 将运行时期异常提前到了编译器；
+        2. 避免了类型转换。
+
+    E - Element
+    T - Type
+    K - Key
+    V - Value
+
+    class MyClass<E>{
+        public void show(E e){
+        }
+    }
+
+    MyClass<String> m = new MyClass();
+    show("abc");
+
+2. Set
+    特点：
+        1. 无序(存取无序)
+        2. 无索引
+        3. 不可重复
+
+    TreeSet:  排序 + 去重
+        必须指定排序的规则：
+            Comparable<E>:  内部比较器
+                compareTo(E e){
+                    this - e: 正序
+                    e - this: 降序
+                    0 ：      去重
+                }
+            Comparator<E>:  外部比较器
+                compare(E e1,E e2){
+                    this == e1  e == e2
+                    e1 - e2: 正序
+                    e2 - e1: 降序
+                    0 ：     去重
+                }
+https://www.cs.usfca.edu/~galles/visualization/BST.html
+
+3. 二叉树
+    采用二分查找算法的一种数据结构。
+    能够提高查询和增删元素的效率。
+
+    二叉查找树：  效率高于链表
+    二叉平衡树：  效率高于二叉查找树
+        规则：任意节点的左右子节点的高差不超过1.
+        通过左旋和右旋实现效果。
+    红黑树：      对树结构维护成本，低于二叉平衡树。
+        规则：
+            1. 所有节点要么红要么黑。
+            2. 根节点和Nil叶子节点必须是黑色。
+            3. 两个红色节点不能相连。
+            4. 任意节点，到其Nil叶子节点之间经过的黑色节点数量必须相同。

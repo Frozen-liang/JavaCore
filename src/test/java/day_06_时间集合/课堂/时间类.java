@@ -19,6 +19,7 @@ public class 时间类 {
         // 格式化
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date data1 = simpleDateFormat.parse(birthday);
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy年MM月dd日");
         System.out.println(data1);
 
         // 得到当前时间
@@ -61,13 +62,8 @@ public class 时间类 {
 
         // 解析字符串为日期特定的格式 失败
 //        String data1 = "1997-10-15";
-//        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        DateFormat dateFormat = new DateFormat();
 //
-//        DateTimeFormatter dateTimeFormatter2 = new DateTimeFormatterBuilder()
-//                .appendPattern("yyyy年MM月dd日")
-//                .toFormatter();
-//        LocalDate parse1 = LocalDate.parse(data1,dateTimeFormatter2);
-//        System.out.println(parse1);
 
 
         // 日期装化为字符串
